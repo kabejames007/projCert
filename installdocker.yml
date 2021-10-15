@@ -4,7 +4,7 @@
   become_user: root
 
   tasks:
-    - name: install httpd
-      apt: name=apache2 state=present
-    - name: start apache2
-      service: name=apache2 state=started
+    - name: install docker
+      apt: name=docker state=present
+    - name: start docker
+      service: name=docker state=started enabled=yes
