@@ -2,9 +2,21 @@
 - hosts: webservers
   become: true
   become_user: root
+  vars:
+   DOCKER_PACKAGES:
+    - apt-transport-https
+    - ca-certificates
+    - curl
+    - gnupg-agent
+    - software-properties-common
 
   tasks:
-    - name: install docker
-      apt: name=docker state=present
-    - name: start docker
-      service: name=docker state=started enabled=yes
+    - name: Update apt packages
+      apt:
+        update_cache: "yes"
+        force_apt_get: "yes"
+    - name: Install packages needed for Docker
+      apt:
+        name: "{{ DOCKER_PACKAGES }}"
+        state: present
+        force_apt_get: "yes"
