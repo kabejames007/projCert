@@ -27,7 +27,7 @@
 
     - name: Save the current Ubuntu release version into a variable
       shell: lsb_release -cs
-        register: ubuntu_version
+      register: ubuntu_version
 
     - name: Add Docker Repository
       apt_repository:
@@ -47,4 +47,7 @@
 
    - name: Test Docker with hello world example
      shell: "docker run hello-world"
-       register: hello_world_output
+     register: hello_world_output
+   - name: Show output of hello word example
+     debug:
+        msg: "Container Output: {{hello_world_output.stdout}}"
