@@ -4,4 +4,7 @@
   become_user: root
   
   tasks:
-    - name: start the container
+    apt:
+        name: "docker-ce"
+        state: present
+        force_apt_get: "yes"
