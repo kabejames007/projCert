@@ -4,6 +4,15 @@
   become_user: root
   
   tasks:
+    - name: Install Docker
+      apt:
+        name: docker
+        state:  present
+    - name: start Docker
+      service:
+        name: docker
+        state: started
+        enabled: yes
     - name: Install Docker-py
       pip:
         name: docker-py
@@ -11,9 +20,9 @@
     - name: Start the Container
       docker_container:
         name: project
-        image:  "kabejames/webapp:v6"
+        image:  "kabejames/webapp:v13"
         state:  started
         restart: yes
         ports:
-         - "8080:9000"
+         - "8083:8083"
       
