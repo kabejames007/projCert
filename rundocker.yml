@@ -4,10 +4,14 @@
   become_user: root
   
   tasks:
+    - name: Install Docker-py
+      pip:
+        name: docker-py
+        state:  present
     - name: Start the Container
       docker_container:
         name: project
-        image:  "kabejames/webapp:v4"
+        image:  "kabejames/webapp:v5"
         state:  started
         published_ports:
           - 0.0.0.0:8181:8181
